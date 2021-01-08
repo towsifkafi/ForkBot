@@ -93,7 +93,7 @@ dist
 
 # Serverless directories
 .serverless/
-
+config.json
 # FuseBox cache
 .fusebox/
 
