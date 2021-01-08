@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+const { COLOR } = require('../config.json')
 module.exports = {
   name: "uptime",
   aliases: ["u"],
@@ -12,8 +14,6 @@ module.exports = {
     minutes %= 60;
     hours %= 24;
 
-    return message
-      .reply(`Uptime: \`${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\``)
-      .catch(console.error);
+    return message.channel.send(new MessageEmbed().setTitle('📈 Uptime').setColor(COLOR).setDescription(`Uptime: \`${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\``))
   }
 };
