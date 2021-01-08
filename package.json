@@ -1,13 +1,13 @@
 {
-  "name": "evobot",
+  "name": "forkbot",
   "version": "0.9.0",
   "description": "Discord music bot built with discord.js",
   "main": "index.js",
   "author": "TowsifKafi <kafitowsif@gmail.com>",
   "private": true,
-  "homepage": "https://github.com/eritislami/evobot",
-  "repository": "github:eritislami/evobot",
-  "bugs": "https://github.com/eritislami/evobot/issues",
+  "homepage": "https://github.com/Towsif12/ForkBot",
+  "repository": "github:Towsif12/ForkBot",
+  "bugs": "https://github.com/Towsif12/ForkBot",
   "engines": {
     "node": ">=12.0.0"
   },
