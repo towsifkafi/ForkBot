@@ -14,6 +14,7 @@ module.exports = {
       .addField('🎃 Status', `\`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}ping\`, \`${PREFIX}uptime\``)
       .addField('🎐 Other', `\`${PREFIX}say\`, \`${PREFIX}avatar\`, \`${PREFIX}invite\``)
       .addField('📨 RSS', `\`${PREFIX}rss bdzone\``)
+      .addField('💀 BhootFM', `\`${PREFIX}bhootfm\``, true)
       otherEmbed.setTimestamp()
     message.channel.send(otherEmbed)
     

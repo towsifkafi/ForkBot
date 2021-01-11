@@ -68,7 +68,8 @@ module.exports = {
       .setColor(COLOR)
       .addField('🎃 Status', `\`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}ping\`, \`${PREFIX}uptime\``)
       .addField('🎐 Other', `\`${PREFIX}say\`, \`${PREFIX}avatar\`, \`${PREFIX}invite\``)
-      .addField('📨 RSS', `\`${PREFIX}rss bdzone\``)
+      .addField('📨 RSS', `\`${PREFIX}rss bdzone\``,true)
+      .addField('💀 BhootFM', `\`${PREFIX}bhootfm\``, true)
     otherEmbed.setTimestamp()
 
     const msg = await message.channel.send(helpEmbed);
