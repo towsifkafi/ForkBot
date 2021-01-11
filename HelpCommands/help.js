@@ -67,7 +67,7 @@ module.exports = {
       .setDescription('Other Commands')
       .setColor(COLOR)
       .addField('🎃 Status', `\`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}ping\`, \`${PREFIX}uptime\``)
-      .addField('🎐 Other', `\`${PREFIX}say\`, \`${PREFIX}avatar\`, \`${PREFIX}invite\``)
+      .addField('🎐 Other', `\`${PREFIX}say\`, \`${PREFIX}avatar\`, \`${PREFIX}invite\`, \`${PREFIX}support\``)
       .addField('📨 RSS', `\`${PREFIX}rss bdzone\``,true)
       .addField('💀 BhootFM', `\`${PREFIX}bhootfm\``, true)
     otherEmbed.setTimestamp()
