@@ -24,6 +24,7 @@ module.exports = {
       .setTitle(`${message.client.user.username} Help`)
       .setDescription("List of all commands")
       .setColor(COLOR)
+      .addField('🍴 ForkBot', 'What is fork bot you ask? hehe.. ForkBot is a bot made from popular discord.js projects on Github. Also check this bot\'s repository `..github`')
       .addField('🎶 Music', `Use \`${PREFIX}music\` to list music commands`, true)
       .addField('🤣 Meme Gen', `Use \`${PREFIX}memegen\` for list meme generator commands`, true)
       .addField('🎉 Fun', `Use \`${PREFIX}fun\` to list for commands`, true)
@@ -51,7 +52,7 @@ module.exports = {
       .setTitle(`🎉 Fun`)
       .setDescription('Fun Commands')
       .setColor(COLOR)
-      .addField('🎈Gif', `\`${PREFIX}poke\`, \`${PREFIX}slap\`, \`${PREFIX}smug\`, \`${PREFIX}tickle\`, \`${PREFIX}pat\`, \`${PREFIX}hug\`, \`${PREFIX}feed\`, \`${PREFIX}cuddle\``)
+      .addField('🎈Gif', `\`${PREFIX}poke\`, \`${PREFIX}slap\`, \`${PREFIX}smug\`, \`${PREFIX}wink\`, \`${PREFIX}tickle\`, \`${PREFIX}pat\`, \`${PREFIX}hug\`, \`${PREFIX}feed\`, \`${PREFIX}cuddle\``)
       .addField('✨ Other', `\`${PREFIX}owofy\`, \`${PREFIX}pokemon\`, \`${PREFIX}baka\``)
     funEmbed.setTimestamp()
 
