@@ -24,6 +24,7 @@
     "lyrics-finder": "^21.0.5",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
+    "mongoose": "^5.11.12",
     "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.1",
     "rss-parser": "^3.10.0",

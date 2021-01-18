@@ -4,6 +4,8 @@
 const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
+const mongo = require("./Others/mongo");
+//const messageCount = require("./Others/message-counter");
 const { TOKEN, PREFIX, STATUS } = require("./util/EvobotUtil");
 
 const client = new Client({ disableMentions: "everyone" });
@@ -18,10 +20,10 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 /**
  * Client Events
  */
-client.on("ready", () => {
-  console.log(`${client.user.username} ready!`);
-  console.log(`Bot tag: ${client.user.tag}`);
-  console.log(`Guilds: ${client.guilds.cache.size}`);
+client.on("ready", async () => {
+  console.log(`[Discord] ${client.user.username} ready!`);
+  console.log(`[Discord] Bot tag: ${client.user.tag}`);
+  console.log(`[Discord] Guilds: ${client.guilds.cache.size}`);
   setInterval(function() {
     let statuses = STATUS[Math.floor(Math.random()*STATUS.length)]
     client.user.setPresence({
@@ -33,6 +35,14 @@ client.on("ready", () => {
       }
     })
   }, 10000)
+  await mongo().then(mongoose =>{
+    try {
+      console.log('[MongoDB] Connected To Database')
+    } finally {
+      mongoose.connection.close()
+    }
+  })
+  //messageCount(client)
 });
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);

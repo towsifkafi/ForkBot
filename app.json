@@ -1,7 +1,7 @@
 {
   "name": "ForkBot",
   "description": "🤖 Discord Bot from polular discord.js projects.",
-  "repository": "https://github.com/eritislami/evobot",
+  "repository": "https://github.com/Towsif12/ForkBot",
   "logo": "https://i.imgur.com/JFxgbWH.png",
-  "keywords": ["discord", "discordjs", "music", "bot"]
+  "keywords": ["discord", "discordjs", "music", "bot", "nsfw"]
 }
