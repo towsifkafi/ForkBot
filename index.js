@@ -7,6 +7,8 @@ const { join } = require("path");
 const mongo = require("./Others/mongo");
 //const messageCount = require("./Others/message-counter");
 const { TOKEN, PREFIX, STATUS } = require("./util/EvobotUtil");
+const chalk = require('chalk')
+console.log(chalk.hex('#6bff93')('[ForkBot] Starting ForkBot'))
 
 const client = new Client({ disableMentions: "everyone" });
 
@@ -21,9 +23,9 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  * Client Events
  */
 client.on("ready", async () => {
-  console.log(`[Discord] ${client.user.username} ready!`);
-  console.log(`[Discord] Bot tag: ${client.user.tag}`);
-  console.log(`[Discord] Guilds: ${client.guilds.cache.size}`);
+  console.log(chalk.cyan('[Discord] ') + `${client.user.username} ready!`);
+  console.log(chalk.cyan('[Discord] ') + `Bot tag: ${client.user.tag}`);
+  console.log(chalk.cyan('[Discord] ') + `Guilds: ${client.guilds.cache.size}`);
   setInterval(function() {
     let statuses = STATUS[Math.floor(Math.random()*STATUS.length)]
     client.user.setPresence({
@@ -37,14 +39,14 @@ client.on("ready", async () => {
   }, 10000)
   await mongo().then(mongoose =>{
     try {
-      console.log('[MongoDB] Connected To Database')
+      console.log(chalk.keyword('lightgreen')('[MongoDB] ') + 'Connected To Database')
     } finally {
       mongoose.connection.close()
     }
   })
   //messageCount(client)
 });
-client.on("warn", (info) => console.log(info));
+client.on("warn", (info) => console.log(chalk.keyword('orange')('[Warning] ') + info));
 client.on("error", console.error);
 
 /**

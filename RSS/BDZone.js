@@ -2,6 +2,21 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let Parser = require('rss-parser');
 const { TOKEN, PREFIX, COLOR, RSS } = require('../config.json')
+const chalk = require('chalk')
+
+if (RSS == false) {
+	console.log(chalk.keyword('lightyellow')('[RSS] ') + 'Loaded In Silent Mode')
+	client.on('message', message => {
+		if (message.content === `${PREFIX}rss bdzone`) {
+			message.channel.send('RSS is disabled in config.')
+		}
+		if (message.content === `${PREFIX}rss`) {
+			message.channel.send('RSS is disabled in config.')
+		}
+	})
+}
+
+
 if (RSS == true) {
 
 	let parser = new Parser();
