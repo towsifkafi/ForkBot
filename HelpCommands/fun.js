@@ -11,7 +11,7 @@ module.exports = {
       .setTitle(`🎉 Fun`)
       .setDescription('Fun Commands')
       .setColor(COLOR)
-      .addField('🎈Gif', `\`${PREFIX}poke\`, \`${PREFIX}slap\`, \`${PREFIX}smug\`, \`${PREFIX}wink\`, \`${PREFIX}tickle\`, \`${PREFIX}pat\`, \`${PREFIX}hug\`, \`${PREFIX}feed\`, \`${PREFIX}cuddle\``)
+      .addField('🎈Gif', `\`${PREFIX}poke\`, \`${PREFIX}slap\`, \`${PREFIX}smug\`, \`${PREFIX}wink\`, \`${PREFIX}tickle\`, \`${PREFIX}pat\`, \`${PREFIX}hug\`, \`${PREFIX}feed\`, \`${PREFIX}cuddle\`, \`${PREFIX}wasted\`, \`${PREFIX}triggered\`, \`${PREFIX}glass\`, \`${PREFIX}gay\`, \`${PREFIX}facepalm\``)
       .addField('✨ Other', `\`${PREFIX}owofy\`, \`${PREFIX}pokemon\`, \`${PREFIX}baka\``)
     funEmbed.setTimestamp()
     message.channel.send(funEmbed)
