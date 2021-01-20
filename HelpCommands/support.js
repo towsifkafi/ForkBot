@@ -13,6 +13,7 @@ module.exports = {
       .setColor(COLOR)
       .setThumbnail('https://cdn.discordapp.com/avatars/797076453686640651/294026eebd8e4a4cf5b4a654afa754b0.png?size=128')
       .addField('💁‍♂️ Support Server', '[Discord Server](https://discord.com/invite/kDaeWYj4zJ)', true)
+      .addField('<:Github512:800564573685547038> Github', '[https://github.com/Towsif12/ForkBot](https://github.com/Towsif12/ForkBot)', true)
       .addField('👋 DM', '`Werewolf#0256`', true)
       .addField('📨 Email', '**team.infinity.dev12@gmail.com**', true)
     funEmbed.setTimestamp()

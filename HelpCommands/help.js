@@ -25,12 +25,21 @@ module.exports = {
       .setDescription("List of all commands")
       .setColor(COLOR)
       .addField('🍴 ForkBot', 'What is fork bot you ask? hehe.. ForkBot is a bot made from popular discord.js projects on Github. Also check this bot\'s repository `..github`')
+      .addField('‼ Moderation', `Use \`${PREFIX}moderation\` to list moderation commands`, true)
       .addField('🎶 Music', `Use \`${PREFIX}music\` to list music commands`, true)
       .addField('🤣 Meme Gen', `Use \`${PREFIX}memegen\` for list meme generator commands`, true)
       .addField('🎉 Fun', `Use \`${PREFIX}fun\` to list for commands`, true)
       .addField('🔞 NSFW', `Use \`${PREFIX}nsfw\` to list nsfw commands`, true)
       .addField('🧵 Others', `Use \`${PREFIX}others\` to list other commands`, true)
     helpEmbed.setTimestamp();
+
+    let modEmbed = new MessageEmbed()
+      .setTitle(`‼ Moderation`)
+      .setDescription("Moderation commands")
+      .setColor(COLOR)
+      .addField('Ban/Kick', `\`${PREFIX}ban\`, \`${PREFIX}kick\`, \`${PREFIX}purge\``, true)
+      .addField('Say/Embed', `\`${PREFIX}say\`, \`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}steal\``)
+    modEmbed.setTimestamp();
 
     let musicEmbed = new MessageEmbed()
       .setTitle(`🎶 Music`)
@@ -74,6 +83,7 @@ module.exports = {
     otherEmbed.setTimestamp()
 
     const msg = await message.channel.send(helpEmbed);
+    await msg.react('‼')
     await msg.react('🎶')
     await msg.react('🤣')
     await msg.react('🎉')
@@ -86,6 +96,10 @@ module.exports = {
         case "📃":
           reaction.users.remove(user).catch(console.error);
           msg.edit(helpEmbed)
+          break;
+        case "‼":
+          reaction.users.remove(user).catch(console.error);
+          msg.edit(modEmbed)
           break;
         case "🎶":
           reaction.users.remove(user).catch(console.error);

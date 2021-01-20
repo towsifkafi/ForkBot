@@ -5,7 +5,7 @@ module.exports = {
   description: "Send bot invite link",
   execute(message) {
     let invite = new MessageEmbed()
-    .setTitle('📩 Invite')
+    .setTitle('📩 Invite') // <:emoji_name:id>
     .setColor(COLOR)
     .setDescription('Hello There! Looks like you want to invite this bot to your cool server uwu.')
     .addField('Invite', `Click [Here](https://discord.com/oauth2/authorize?client_id=${message.client.user.id}&permissions=8&scope=bot) to invite this bot to your server`)

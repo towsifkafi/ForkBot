@@ -9,8 +9,8 @@ module.exports = {
     function invalid(text) {
       message.channel.send(new MessageEmbed().setColor(COLOR).setDescription(text))
     }
-    if (!message.member.permissions.has("ADMINISTRATOR"))
-     return message.channel.send(`Sorry you dont have permisson to use that command.`);
+    if (!message.member.permissions.has("MANAGE_GUILD"))
+     return invalid(`Sorry you dont have permisson to use that command.`);
     let MSG = message.content.split(`${PREFIX}say `).join("");
     if (MSG == `${PREFIX}say`)
      return invalid(`You did not specify your message to send!`);

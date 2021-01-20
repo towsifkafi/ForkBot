@@ -144,3 +144,16 @@ client.on("message", async (message) => {
     message.reply("There was an error executing that command.").catch(console.error);
   }
 });
+
+// Logging System
+
+client.on("guildCreate", guild => {
+  console.log(chalk.cyan('[Server] ') + chalk.keyword('lightgreen')("+ [" + guild.name + "]"));
+  
+})
+
+client.on("guildDelete", guild => {
+  console.log(chalk.cyan('[Server] ') + chalk.keyword('red')("- [" + guild.name + "]"));
+
+})
+
