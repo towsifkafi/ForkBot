@@ -17,12 +17,9 @@ module.exports = {
     if (!message.mentions.users.size) {
       return message.channel.send('Please specify users to send message')
     }
-    console.log(taggedUser.id)
     const user = await client.users.fetch(taggedUser.id).catch(() => null);
-    console.log(user)
   if (!user) return message.channel.send("User not found:(");
   let text = message.content.replace(`${PREFIX}dm `, '').replace(`<@!${taggedUser.id}> `, '')
-  console.log(text)
   if(text == `<@!${taggedUser.id}>`) {
     return message.channel.send('Type some message to send')
   }
