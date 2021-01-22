@@ -31,6 +31,8 @@
     "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.1",
     "node-superfetch": "^0.1.10",
+    "pornsearch": "^2.4.3",
+    "reconlx": "^1.0.8",
     "request": "^2.88.2",
     "rss-parser": "^3.10.0",
     "simple-youtube-api": "^5.1.1",
