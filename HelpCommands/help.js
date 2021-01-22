@@ -1,6 +1,6 @@
 const { MessageEmbed, Message } = require("discord.js");
 const fs = require("fs");
-const { PREFIX, COLOR } = require("../config.json")
+const { PREFIX, COLOR, OWNERS, BETA } = require("../config.json")
 module.exports = {
   name: "help",
   aliases: ["h"],
@@ -32,6 +32,14 @@ module.exports = {
       .addField('🔞 NSFW', `Use \`${PREFIX}nsfw\` to list nsfw commands`, true)
       .addField('🧵 Others', `Use \`${PREFIX}others\` to list other commands`, true)
     helpEmbed.setTimestamp();
+    
+    if(BETA.includes(message.author.id)) {
+          helpEmbed.addField('🧪 BETA', `Use \`${PREFIX}beta\` to list BETA Tester commands`, true)
+    }
+    if(OWNERS.includes(message.author.id)) {
+      helpEmbed.addField('🛠 Owner', `Use \`${PREFIX}owner\` to list owner commands`, true)
+    }
+    
 
     let modEmbed = new MessageEmbed()
       .setTitle(`‼ Moderation`)
