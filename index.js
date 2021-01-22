@@ -97,6 +97,11 @@ for (const file of commandFiles) {
   const command = require(join(__dirname, `RSS`, `${file}`));
   client.commands.set(command.name, command);
 }
+commandFiles = readdirSync(join(__dirname, `Tools`)).filter((file) => file.endsWith(`.js`));
+for (const file of commandFiles) {
+  const command = require(join(__dirname, `Tools`, `${file}`));
+  client.commands.set(command.name, command);
+}
 client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
