@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { PREFIX, COLOR } = require('../config.json')
 module.exports = {
   name: "purge",
-  aliases: ["purge"],
+  aliases: ["purge", "clear", "clean", "prune", "delete"],
   description: "Say as bot...",
   execute(message, args) {
     let commands = message.client.commands.array();

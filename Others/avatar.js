@@ -12,16 +12,16 @@ module.exports = {
       .setTitle(`${message.author.username}'s Avatar`)
       .setColor('#00FFFF')
       //${taggedUser.username}
-      .setImage(message.author.avatarURL())
+      .setImage(message.author.displayAvatarURL({dynamic: false, size: 256}))
       .setTimestamp()
       return message.channel.send(fact)
     }
 
     let fact = new MessageEmbed()
-    .setTitle(`${taggedUser.username} Ejected!`)
+    .setTitle(`${taggedUser.username} Avatar!`)
     .setColor('#00FFFF')
     //${taggedUser.username}
-    .setImage(taggedUser.displayAvatarURL())
+    .setImage(taggedUser.displayAvatarURL({dynamic: false, size: 256}))
     .setTimestamp()
     message.channel.send(fact)
   }

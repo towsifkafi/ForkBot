@@ -38,7 +38,7 @@ module.exports = {
     message.channel.send(embed);
     
   } catch (error) {
-    if (err.length > 1024) {
+    if (error.length > 1024) {
       // Do the same like above if the error output was more than 1024 characters.
       const {body} = await post("https://hastebin.com/documents").send(err);
       embed.addField("Output", `https://hastebin.com/${body.key}.js`).setColor("RED");

@@ -19,6 +19,8 @@ module.exports = {
       const BDZONE_LINK = await BDZONE.json()
       const CUTTLY = await fetch(`https://cutt.ly/api/api.php?key=${API.LINK_SHORTENER.CUTTLY}&short=${args[0]}`)
       const CUTTLY_LINK = await CUTTLY.json()
+      const ISGD = await fetch(`https://is.gd/create.php?format=json&url=${encodeURIComponent(args[0])}`)
+      const ISGD_LINK = await ISGD.json()
       request({ uri: "https://api.rebrandly.com/v1/links", method: "POST", body: JSON.stringify({ destination: args[0] }), headers: { "Content-Type": "application/json", "apikey": API.LINK_SHORTENER.REBRANDLY } }, (err, response, body) => {
             console.log(chalk.keyword('lime')('[Link Shortener] ') + 'https://' + JSON.parse(body).shortUrl)
             console.log(chalk.keyword('lime')('[Link Shortener] ') + BDZONE_LINK.shortenedUrl)
@@ -27,7 +29,7 @@ module.exports = {
             .setTitle('🗜 Link Shortener')
             .setDescription('Discord Link Shortener')
             .setColor(COLOR)
-            .addField(`🔗 Shortened Links`, `Link: ${args[0]}\n\n**BDZone**: [Link](${BDZONE_LINK.shortenedUrl}) \`${BDZONE_LINK.shortenedUrl}\`\n**Cuttly**: [Link](${CUTTLY_LINK.url.shortLink}) \`${CUTTLY_LINK.url.shortLink}\`\n**Rebrandly**: [Link](${'https://' + JSON.parse(body).shortUrl}) \`${'https://' + JSON.parse(body).shortUrl}\``)
+            .addField(`🔗 Shortened Links`, `Link: ${args[0]}\n\n**BDZone**: [Link](${BDZONE_LINK.shortenedUrl}) \`${BDZONE_LINK.shortenedUrl}\`\n**Cuttly**: [Link](${CUTTLY_LINK.url.shortLink}) \`${CUTTLY_LINK.url.shortLink}\`\n**Rebrandly**: [Link](${'https://' + JSON.parse(body).shortUrl}) \`${'https://' + JSON.parse(body).shortUrl}\`\n**Is.gd**: [Link](${'https://' + ISGD_LINK.shorturl}) \`${ISGD_LINK.shorturl}\``)
             msg.edit('Links Created' ,sendmsg)
       })
     })

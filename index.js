@@ -1,24 +1,22 @@
 /**
  * Module Imports
  */
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
 const mongo = require("./Others/mongo");
 //const messageCount = require("./Others/message-counter");
-const { TOKEN, PREFIX, STATUS } = require("./util/EvobotUtil");
+const { TOKEN, PREFIX, STATUS, COLOR, DEBUG } = require("./util/EvobotUtil");
 const chalk = require('chalk')
 console.log(chalk.hex('#6bff93')('[ForkBot] Starting ForkBot'))
 
 const client = new Client({ disableMentions: "everyone" });
-
 client.login(TOKEN);
 client.commands = new Collection();
 client.prefix = PREFIX;
 client.queue = new Map();
 const cooldowns = new Collection();
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 /**
  * Client Events
  */
@@ -45,6 +43,11 @@ client.on("ready", async () => {
     }
   })
   //messageCount(client)
+});
+client.on("debug", function (info) {
+  if(DEBUG === true) {
+  console.log(chalk.keyword('lightgreen')('[Debug] ') + `${info}`);
+  }
 });
 client.on("warn", (info) => console.log(chalk.keyword('orange')('[Warning] ') + info));
 client.on("error", console.error);
@@ -102,9 +105,20 @@ for (const file of commandFiles) {
   const command = require(join(__dirname, `Tools`, `${file}`));
   client.commands.set(command.name, command);
 }
+commandFiles = readdirSync(join(__dirname, `Owner`)).filter((file) => file.endsWith(`.js`));
+for (const file of commandFiles) {
+  const command = require(join(__dirname, `Owner`, `${file}`));
+  client.commands.set(command.name, command);
+}
+commandFiles = readdirSync(join(__dirname, `BETA`)).filter((file) => file.endsWith(`.js`));
+for (const file of commandFiles) {
+  const command = require(join(__dirname, `BETA`, `${file}`));
+  client.commands.set(command.name, command);
+}
 client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
+  if(message.content == '..') return;
 
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(PREFIX)})\\s*`);
   if (!prefixRegex.test(message.content)) return;
@@ -113,12 +127,13 @@ client.on("message", async (message) => {
 
   const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
-
   const command =
     client.commands.get(commandName) ||
     client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return;
+  
+
 
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Collection());

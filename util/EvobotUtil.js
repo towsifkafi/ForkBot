@@ -28,3 +28,4 @@ exports.STAY_TIME = config ? config.STAY_TIME : process.env.STAY_TIME;
 exports.DEFAULT_VOLUME = config ? config.DEFAULT_VOLUME: process.env.DEFAULT_VOLUME;
 exports.STATUS = config ? config.STATUS: process.env.STATUS;
 exports.COLOR = config ? config.COLOR: process.env.COLOR;
+exports.DEBUG = config ? config.DEBUG: process.env.DEBUG;
