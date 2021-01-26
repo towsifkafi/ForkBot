@@ -99,7 +99,7 @@ module.exports = {
       .setTitle('🎲 Games')
       .setDescription('Games Commands')
       .setColor(COLOR)
-      .addField('🎲 Commands', `\`${PREFIX}8ball\`, \`${PREFIX}rps\`, \`${PREFIX}tictactoe\`, \`${PREFIX}truthordare (${PREFIX}tod)\``)
+      .addField('🎲 Commands', `\`${PREFIX}8ball\`, \`${PREFIX}rps\`, \`${PREFIX}tictactoe\`, \`${PREFIX}truthordare (${PREFIX}tod)\`, \`${PREFIX}snake\``)
     gamesEmbed.setTimestamp()
 
     let toolsEmbed = new MessageEmbed()

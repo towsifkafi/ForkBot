@@ -6,7 +6,7 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const mongo = require("./Others/mongo");
 //const messageCount = require("./Others/message-counter");
-const { TOKEN, PREFIX, STATUS, COLOR, DEBUG } = require("./util/EvobotUtil");
+const { TOKEN, PREFIX, STATUS, COLOR, DEBUG, TWITCH } = require("./util/EvobotUtil");
 const chalk = require('chalk')
 console.log(chalk.hex('#6bff93')('[ForkBot] Starting ForkBot'))
 
@@ -31,7 +31,7 @@ client.on("ready", async () => {
       activity: {
           name: statuses,
           type: 'STREAMING',
-          url: 'https://twitch.tv/towsifkafi'
+          url: `https://twitch.tv/${TWITCH}`
       }
     })
   }, 10000)
