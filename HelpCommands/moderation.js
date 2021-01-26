@@ -11,8 +11,8 @@ module.exports = {
       .setTitle(`‼ Moderation`)
       .setDescription("Moderation commands")
       .setColor(COLOR)
-      .addField('Ban/Kick', `\`${PREFIX}ban\`, \`${PREFIX}kick\`, \`${PREFIX}purge\``, true)
-      .addField('Say/Embed', `\`${PREFIX}say\`, \`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}steal\``)
+      .addField('Ban/Kick', `\`${PREFIX}ban\`, \`${PREFIX}kick\`, \`${PREFIX}mute\`, \`${PREFIX}unmute\`, \`${PREFIX}purge\`, \`${PREFIX}slowmode\`, \`${PREFIX}announce\`, \`${PREFIX}poll\``, true)
+      .addField('Say/Embed', `\`${PREFIX}say\`, \`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}roleinfo\`, \`${PREFIX}setnick\`, \`${PREFIX}transcript\`, \`${PREFIX}steal\``)
     modEmbed.setTimestamp();
     message.channel.send(modEmbed)
     

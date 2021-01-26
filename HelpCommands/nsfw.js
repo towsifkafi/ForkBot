@@ -11,7 +11,8 @@ module.exports = {
       .setTitle('🔞 NSFW')
       .setDescription('NSFW Commands')
       .setColor(COLOR)
-      .addField('💄 Anime', `\`${PREFIX}anal\`, \`${PREFIX}blowjob\`, \`${PREFIX}boobs\`, \`${PREFIX}cumart\`, \`${PREFIX}cumsluts\`, \`${PREFIX}feet\`, \`${PREFIX}feetgif\`, \`${PREFIX}hentaigif\`, \`${PREFIX}kuni\`, \`${PREFIX}lesbian\`, \`${PREFIX}neko\`, \`${PREFIX}nekogif\`, \`${PREFIX}pussy\`, \`${PREFIX}spank\`, \`${PREFIX}tits\`, \`${PREFIX}trap\`, \`${PREFIX}yuri\``)
+      .addField('💄 Anime', `\`${PREFIX}anal\`, \`${PREFIX}blowjob\`, \`${PREFIX}boobs\`, \`${PREFIX}cumart\`, \`${PREFIX}cumsluts\`, \`${PREFIX}feet\`, \`${PREFIX}feetgif\`, \`${PREFIX}hentaigif\`, \`${PREFIX}kuni\`, \`${PREFIX}lesbian\`, \`${PREFIX}neko\`, \`${PREFIX}nekogif\`, \`${PREFIX}pussy\`, \`${PREFIX}spank\`, \`${PREFIX}tits\`, \`${PREFIX}trap\`, \`${PREFIX}yuri\`, \`${PREFIX}4k\``)
+      .addField('💋 Other', `\`${PREFIX}pgif\`, \`${PREFIX}thigh\``)
     adultEmbed.setTimestamp()
     message.channel.send(adultEmbed)
     

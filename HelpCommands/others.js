@@ -11,7 +11,7 @@ module.exports = {
       .setTitle(`🧵 Others`)
       .setDescription('Other Commands')
       .setColor(COLOR)
-      .addField('🎃 Status', `\`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}ping\`, \`${PREFIX}uptime\``)
+      .addField('🎃 Status', `\`${PREFIX}serverinfo\`, \`${PREFIX}userinfo\`, \`${PREFIX}ping\`, \`${PREFIX}uptime\`, \`${PREFIX}status\``)
       .addField('🎐 Other', `\`${PREFIX}say\`, \`${PREFIX}avatar\`, \`${PREFIX}invite\`, \`${PREFIX}support\``)
       .addField('📨 RSS', `\`${PREFIX}rss bdzone\``)
       .addField('💀 BhootFM', `\`${PREFIX}bhootfm\``, true)

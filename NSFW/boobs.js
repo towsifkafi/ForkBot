@@ -1,25 +1,31 @@
-const { MessageEmbed } = require("discord.js");
-const Discord = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require("discord.js");
+const { PREFIX, COLOR, OWNERS } = require('../config.json')
+const { get } = require("snekfetch");
+
 const fs = require('fs');
-const { invalid } = require("moment");
-const nekoclient = require('nekos.life');
-const neko = new nekoclient();
-const { COLOR } = require('../config.json')
 module.exports = {
   name: "boobs",
   aliases: ["boobs"],
-  description: "NSFW",
-  async execute(message) {
+  description: "Shows your or others avatar...",
+  async execute(message, args) {
     let commands = message.client.commands.array();
-    function invalid(text) {
-      message.channel.send(new MessageEmbed().setColor('#00FFFF').setDescription(text))
-    }
-    if (!message.channel.nsfw) return invalid('Umm....This is not a NSFW channel..Sorry!')
-    const GIF = await neko.nsfw.boobs();
-      const embed = new Discord.MessageEmbed()
-      .setColor(COLOR)
-      .setTitle(`NSFW | Boobs`)
-      .setImage(GIF.url)
-      return message.channel.send(embed);
+    if (!message.channel.nsfw) return message.channel.send("🔞", "Cannot display NSFW content in a SFW channel.");
+    const msg = await message.channel.send(`**${message.member.displayName}** is looking for boobies...`);
+    const { body } = await get("http://api.oboobs.ru/boobs/0/1/random");
+    await msg.edit({
+      embed: {
+        "title": "Click here if the image failed to load.",
+        "url": `http://media.oboobs.ru/${body[0].preview}`,
+        "color": 6192321,
+        "image": {
+          "url": `http://media.oboobs.ru/${body[0].preview}`
+        },
+        "footer": {
+          "icon_url": message.author.displayAvatarURL({ format: "png", size: 32 }),
+          "text": `Requested by ${message.author.tag} | Powered by oboobs.ru`
+        }
+      }
+    });
   }
+
 };

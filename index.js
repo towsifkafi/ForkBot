@@ -50,11 +50,15 @@ client.on("debug", function (info) {
   }
 });
 client.on("warn", (info) => console.log(chalk.keyword('orange')('[Warning] ') + info));
+client.on("reconnecting", () => console.log(chalk.keyword('orange')('[Warning] ') + 'Reconneting...'));
 client.on("error", console.error);
 
 /**
  * Import all commands
  */
+
+
+
 commandFiles = readdirSync(join(__dirname, "Music")).filter((file) => file.endsWith(".js"));
 for (const file of commandFiles) {
   const command = require(join(__dirname, "Music", `${file}`));
@@ -100,6 +104,11 @@ for (const file of commandFiles) {
   const command = require(join(__dirname, `RSS`, `${file}`));
   client.commands.set(command.name, command);
 }
+commandFiles = readdirSync(join(__dirname, `Games`)).filter((file) => file.endsWith(`.js`));
+for (const file of commandFiles) {
+  const command = require(join(__dirname, `Games`, `${file}`));
+  client.commands.set(command.name, command);
+}
 commandFiles = readdirSync(join(__dirname, `Tools`)).filter((file) => file.endsWith(`.js`));
 for (const file of commandFiles) {
   const command = require(join(__dirname, `Tools`, `${file}`));
@@ -119,7 +128,6 @@ client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
   if(message.content == '..') return;
-
   const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(PREFIX)})\\s*`);
   if (!prefixRegex.test(message.content)) return;
 
