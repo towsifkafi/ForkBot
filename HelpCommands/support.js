@@ -5,7 +5,7 @@ module.exports = {
   name: "support",
   aliases: ["support"],
   description: "Shows your or others avatar...",
-  execute(message) {
+  async execute(message) {
     let commands = message.client.commands.array();
     let funEmbed = new MessageEmbed()
       .setTitle(`🤖 Support`)

@@ -1,12 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const fs = require('fs');
-const { PREFIX, COLOR } = require('../config.json')
+const { COLOR } = require('../config.json')
 module.exports = {
   name: "music",
   aliases: ["music"],
   description: "Shows your or others avatar...",
-  execute(message) {
+  async execute(message) {
     let commands = message.client.commands.array();
+    let PREFIX = await message.client.prefix(message)
     let musicEmbed = new MessageEmbed()
       .setTitle(`🎶 Music`)
       .setDescription("Music commands")

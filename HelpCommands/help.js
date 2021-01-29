@@ -2,7 +2,8 @@ const { MessageEmbed, Message } = require("discord.js");
 const fs = require("fs");
 const { readdirSync } = require("fs");
 const { join } = require("path");
-const { PREFIX, COLOR, OWNERS, BETA } = require("../config.json")
+const { COLOR, OWNERS, BETA } = require("../config.json")
+const nsfw = require('../schema/nsfw-status')
 // main = []
 // maincmds = []
 // let maincommands = readdirSync(join(__dirname, "../Music")).filter((file) => file.endsWith(".js"))
@@ -18,8 +19,13 @@ module.exports = {
   name: "help",
   aliases: ["h"],
   description: "Display all commands and descriptions",
+  //beta: "true",
   async execute(message) {
     let commands = message.client.commands.array();
+    let PREFIX = await message.client.prefix(message)
+    const check = await nsfw.findOne({
+      Guild: message.guild.id
+    })
     message.react("🎉");
     fs.readdir("./sounds/meme", function(err, files) {
       if (err) return console.log("Unable to read directory: " + err);
@@ -33,18 +39,20 @@ module.exports = {
     })
 
     let helpEmbed = new MessageEmbed()
-      .setTitle(`${message.client.user.username} Help`)
-      .setDescription(`List of all commands. You can also use \`${PREFIX}allcommands\` to list all commands. \`${commands.length}\` commands loaded.`)
-      .setColor(COLOR)
-      .addField('🍴 ForkBot', 'What is fork bot you ask? hehe.. ForkBot is a bot made from popular discord.js projects on Github. Also check this bot\'s repository `..github`')
-      .addField('‼ Moderation', `Use \`${PREFIX}moderation\` to list moderation commands`, true)
-      .addField('🎶 Music', `Use \`${PREFIX}music\` to list music commands`, true)
-      .addField('🤣 Meme Gen', `Use \`${PREFIX}memegen\` for list meme generator commands`, true)
-      .addField('🎉 Fun', `Use \`${PREFIX}fun\` to list for commands`, true)
-      .addField('🔞 NSFW', `Use \`${PREFIX}nsfw\` to list nsfw commands`, true)
-      .addField('🎲 Games', `Use \`${PREFIX}games\` to list game commands`, true)
-      .addField('🔧 Tools', `Use \`${PREFIX}tools\` to list tools commands`, true)
-      .addField('🧵 Others', `Use \`${PREFIX}others\` to list other commands`, true)
+    helpEmbed.setTitle(`${message.client.user.username} Help`)
+    helpEmbed.setDescription(`List of all commands. You can also use \`${PREFIX}allcommands\` to list all commands. \`${commands.length}\` commands loaded.`)
+    helpEmbed.setColor(COLOR)
+    helpEmbed.addField('🍴 ForkBot', `What is fork bot you ask? hehe.. ForkBot is a bot made from popular discord.js projects on Github. Also check this bot\'s repository \`${PREFIX}github\``)
+    helpEmbed.addField('‼ Moderation', `Use \`${PREFIX}moderation\` to list moderation commands`, true)
+    helpEmbed.addField('🎶 Music', `Use \`${PREFIX}music\` to list music commands`, true)
+    helpEmbed.addField('🤣 Meme Gen', `Use \`${PREFIX}memegen\` for list meme generator commands`, true)
+    helpEmbed.addField('🎉 Fun', `Use \`${PREFIX}fun\` to list for commands`, true)
+    if (check) {
+      if (!check.Status.includes('disable')) helpEmbed.addField('🔞 NSFW', `Use \`${PREFIX}nsfw\` to list nsfw commands`, true)
+    }
+    helpEmbed.addField('🎲 Games', `Use \`${PREFIX}games\` to list game commands`, true)
+    helpEmbed.addField('🔧 Tools', `Use \`${PREFIX}tools\` to list tools commands`, true)
+    helpEmbed.addField('🧵 Others', `Use \`${PREFIX}others\` to list other commands`, true)
     helpEmbed.setTimestamp();
     
     if(BETA.includes(message.author.id)) {
@@ -54,7 +62,6 @@ module.exports = {
       helpEmbed.addField('🛠 Owner', `Use \`${PREFIX}owner\` to list owner commands`, true)
     }
     
-
     let modEmbed = new MessageEmbed()
       .setTitle(`‼ Moderation`)
       .setDescription("Moderation commands")
@@ -124,7 +131,9 @@ module.exports = {
     await msg.react('🎶')
     await msg.react('🤣')
     await msg.react('🎉')
-    await msg.react('🔞')
+    if (check) {
+      if (!check.Status.includes('disable')) await msg.react('🔞')
+    }
     await msg.react('🎲')
     await msg.react('🔧')
     await msg.react('🧵')
@@ -154,7 +163,9 @@ module.exports = {
           break;
         case "🔞":
           reaction.users.remove(user).catch(console.error);
-          msg.edit(adultEmbed)
+          if (check) {
+            if (!check.Status.includes('disable')) msg.edit(adultEmbed)
+          }
           break;
         case "🎲":
           reaction.users.remove(user).catch(console.error);

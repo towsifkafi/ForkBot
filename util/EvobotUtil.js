@@ -30,3 +30,4 @@ exports.STATUS = config ? config.STATUS: process.env.STATUS;
 exports.COLOR = config ? config.COLOR: process.env.COLOR;
 exports.DEBUG = config ? config.DEBUG: process.env.DEBUG;
 exports.TWITCH = config ? config.TWITCH: process.env.TWITCH;
+exports.MOBILE_MODE = config ? config.MOBILE_MODE: process.env.MOBILE_MODE;

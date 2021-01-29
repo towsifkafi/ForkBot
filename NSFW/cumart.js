@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const { invalid } = require("moment");
 const nekoclient = require('nekos.life');
+const nsfw = require('../schema/nsfw-status')
+
 const neko = new nekoclient();
 const { COLOR } = require('../config.json')
 module.exports = {
@@ -10,6 +12,12 @@ module.exports = {
   aliases: ["cumart"],
   description: "NSFW",
   async execute(message) {
+    const check = await nsfw.findOne({
+      Guild: message.guild.id
+    })
+    if (check) {
+      if (check.Status.includes('disable')) return message.channel.send('NSFW is disabled in this server.')
+    }
     let commands = message.client.commands.array();
     function invalid(text) {
       message.channel.send(new MessageEmbed().setColor('#00FFFF').setDescription(text))

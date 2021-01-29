@@ -5,7 +5,7 @@ module.exports = {
   name: "github",
   aliases: ["github"],
   description: "Shows your or others avatar...",
-  execute(message) {
+  async execute(message) {
     let commands = message.client.commands.array();
     let funEmbed = new MessageEmbed()
       .setTitle(`<:Github512:800564573685547038> Github`)

@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const { PREFIX, COLOR, OWNERS } = require('../config.json')
 const { get } = require("snekfetch");
+const nsfw = require('../schema/nsfw-status')
 
 const fs = require('fs');
 module.exports = {
@@ -8,6 +9,12 @@ module.exports = {
   aliases: ["thigh"],
   description: "Shows your or others avatar...",
   async execute(message, args) {
+    const check = await nsfw.findOne({
+      Guild: message.guild.id
+    })
+    if (check) {
+      if (check.Status.includes('disable')) return message.channel.send('NSFW is disabled in this server.')
+    }
     if (!message.channel.nsfw) return message.channel.send("🔞", "Cannot display NSFW content in a SFW channel.");
     const { body } = await get("https://nekobot.xyz/api/image?type=thigh");
     const msg = await message.channel.send(`wait......`);

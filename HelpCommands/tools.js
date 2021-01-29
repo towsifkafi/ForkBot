@@ -1,12 +1,13 @@
 const { MessageEmbed } = require("discord.js");
 const fs = require('fs');
-const { PREFIX, COLOR } = require('../config.json')
+const { COLOR } = require('../config.json')
 module.exports = {
   name: "tools",
   aliases: ["tools"],
   description: "Shows your or others avatar...",
-  execute(message) {
+  async execute(message) {
     let commands = message.client.commands.array();
+    let PREFIX = await message.client.prefix(message)
     let toolsEmbed = new MessageEmbed()
       .setTitle('🔧 Tools')
       .setDescription('Tools Commands')

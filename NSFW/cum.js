@@ -2,6 +2,7 @@ const { MessageEmbed, MessageAttachment } = require("discord.js");
 const Discord = require("discord.js")
 const { PREFIX, COLOR, OWNERS } = require('../config.json')
 const superagent = require('superagent');
+const nsfw = require('../schema/nsfw-status')
 
 const fs = require('fs');
 module.exports = {
@@ -9,6 +10,12 @@ module.exports = {
   aliases: ["cum"],
   description: "Shows your or others avatar...",
   async execute(message, args) {
+    const check = await nsfw.findOne({
+      Guild: message.guild.id
+    })
+    if (check) {
+      if (check.Status.includes('disable')) return message.channel.send('NSFW is disabled in this server.')
+    }
     let commands = message.client.commands.array();
         if (!message.channel.nsfw) {
           message.react('💢');
